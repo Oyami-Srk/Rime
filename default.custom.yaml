@@ -1,0 +1,37 @@
+# Rime custom settings
+# encoding: utf-8
+
+patch:
+  schema_list:
+    - schema: double_pinyin
+    - schema: luna_pinyin
+    - schema: easy_en
+  "switcher/caption": 〔方案选单〕
+  "switcher/hotkeys":
+    __include: default:/switcher/hotkeys
+    __append:
+      - Control+equal
+  "ascii_composer/good_old_caps_lock": false
+  "ascii_composer/switch_key":
+    Caps_Lock: commit_code
+    Shift_L: noop
+    Shift_R: noop
+    Control_L: noop
+    Control_R: noop
+  "menu/page_size": 9
+  key_binder/bindings:
+    __include: default:/key_binder/bindings
+    __append:
+      - {accept: "bracketleft", send: Page_Up, when: paging}
+      - {accept: "bracketright", send: Page_Down, when: has_menu}
+      - {accept: "Control+p", send: Up, when: composing}
+      - {accept: "Control+n", send: Down, when: composing}
+      - {accept: "Control+b", send: Left, when: composing}
+      - {accept: "Control+f", send: Right, when: composing}
+      - {accept: "Control+a", send: Home, when: composing}
+      - {accept: "Control+e", send: End, when: composing}
+      - {accept: "Control+d", send: Delete, when: composing}
+      - {accept: "Control+k", send: "Shift+Delete", when: composing}
+      - {accept: "Control+h", send: BackSpace, when: composing}
+      - {accept: "Control+g", send: Escape, when: composing}
+      - {accept: "Control+bracketleft", send: Escape, when: composing}

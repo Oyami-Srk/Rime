@@ -1,0 +1,60 @@
+patch:
+  "schema/name": 自然码双拼
+  "schema/dependencies":
+    __include: double_pinyin.schema:/schema/dependencies
+    __append:
+      - emoji
+      - easy_en
+  switches:
+    - name: ascii_mode
+      reset: 0
+      states: [ 中文, 西文 ]
+    - name: full_shape
+      states: [ 半角, 全角 ]
+    - name: simplification
+      reset: 1
+      states: [ 漢字, 汉字 ]
+
+  __include: emoji_suggestion_patch
+  "punctuator/import_preset": symbols
+  "recognizer/patterns/punct": "^/([A-Z|a-z]*|[0-9]|10)$"
+  "engine/translators":
+    __include: double_pinyin.schema:/engine/translators
+    __append:
+      - table_translator@easy_en
+      # - table_translator@user_dict
+  "engine/filters":
+    # __include: double_pinyin.schema:/engine/filters:
+    # __append:
+    - simplifier
+    - simplifier@emoji_suggestion
+    - uniquifier
+    # - charset_filter@gbk
+
+  translator:
+    dictionary: luna_pinyin.custom
+    prism: double_pinyin
+  easy_en:
+    dictionary: easy_en
+    initial_quality: -3
+    
+  # user_dict:
+    # dictionary: user_phrase
+  reverse_lookup:
+    dictionary: emoji
+    enable_completion: true
+    prefix: "`"
+    suffix: "'"
+    tips: 〔Emoji〕
+
+emoji_suggestion_patch:
+  switches/@next:
+    name: emoji_suggestion
+    reset: 0
+    states: [ "🈚️️\uFE0E", "🈶️️\uFE0F" ]
+  'engine/filters/@before 0':
+    simplifier@emoji_suggestion
+  emoji_suggestion:
+    opencc_config: emoji.json
+    option_name: emoji_suggestion
+    tips: all

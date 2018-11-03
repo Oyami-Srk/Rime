@@ -1,0 +1,6 @@
+build
+*.userdb
+luna_pinyin.sougou_myself.dict.yaml
+user_phrase.dict.yaml
+custom_phrase.txt
+
