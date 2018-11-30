@@ -6,6 +6,7 @@ patch:
     - schema: double_pinyin
     - schema: luna_pinyin
     - schema: easy_en
+    - schema: nihongo-r
   "switcher/caption": 〔方案选单〕
   "switcher/hotkeys":
     __include: default:/switcher/hotkeys

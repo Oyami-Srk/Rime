@@ -22,6 +22,8 @@ patch:
     __include: double_pinyin.schema:/engine/translators
     __append:
       - table_translator@easy_en
+      - table_translator@zrm2000
+      - table_translator@nihongo-r
       # - table_translator@user_dict
   "engine/filters":
     # __include: double_pinyin.schema:/engine/filters:
@@ -36,6 +38,14 @@ patch:
     prism: double_pinyin
   easy_en:
     dictionary: easy_en
+    initial_quality: -3
+  zrm2000:
+    dictionary: zrm2000
+    enable_sentence: false
+    initial_quality: 1
+  nihongo-r:
+    enable_completion: true
+    enable_sentence: false
     initial_quality: -3
     
   # user_dict:
